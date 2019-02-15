@@ -391,7 +391,8 @@ public class ServerConfigurationManager {
             ServerAdminClient serverAdmin = new ServerAdminClient(backEndUrl, sessionCookie);
             serverAdmin.restartGracefully();
             try {
-                Thread.sleep(60000); //force wait until server gracefully shutdown
+                // TODO: 15/02/19 Need to reduce once the server startup time reduced
+                Thread.sleep(100000); //force wait until server gracefully shutdown
                 ClientConnectionUtil.waitForPort(port, timeout, true, hostname);
                 Thread.sleep(120000); //forceful wait until server is ready to be served
             } catch (InterruptedException e) {
